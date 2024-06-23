@@ -1,0 +1,93 @@
+@import "rfs/scss";
+
+:root {
+  --Primary: #ffffff;
+  --Bg: #111111;
+  --BgSecond: #222222;
+  --AccentLight: #ad7955;
+  --AccentMiddle: #8f5334;
+  --AccentDark: #653012;
+  --PrimaryLight: #eeeeee;
+  --Second: #bbbbbb;
+  --SecondLight: #999999;
+  --SecondDark: #777777;
+  --Dark: #323232;
+
+  // fonts
+  --font: "Uto", sans-serif;
+}
+
+@mixin Font(
+  $font-size: 14px,
+  $font-weight: 400,
+  $line-height: normal,
+  $color: var(--Primary),
+  $letter-spacing: 0px,
+  $font-family: inherit
+) {
+  font-family: $font-family;
+  @include font-size($font-size);
+  // font-size: $font-size;
+  font-style: normal;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  color: $color;
+  margin: 0px;
+}
+
+/* Wide-Screen */
+@mixin Wide-Screen() {
+  @media screen and (min-width: 1920px) {
+    @content;
+  }
+}
+
+/* Full-Screen */
+@mixin Full-Screen() {
+  @media (max-width: 1920px) {
+    @content;
+  }
+}
+
+/* Desktop */
+@mixin Desktop() {
+  @media (max-width: 1440px) {
+    @content;
+  }
+}
+
+/* Laptop */
+@mixin Laptop() {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+/* Tablet */
+@mixin Tablet() {
+  @media (max-width: 992px) {
+    @content;
+  }
+}
+
+/* Small-Tablet */
+@mixin Small-Tablet() {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+/* Mobile */
+@mixin Mobile() {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+/* Mini */
+@mixin Mini() {
+  @media (max-width: 320px) {
+    @content;
+  }
+}

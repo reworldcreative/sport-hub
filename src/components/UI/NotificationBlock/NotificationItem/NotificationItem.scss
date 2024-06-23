@@ -1,0 +1,32 @@
+.notification-item {
+  position: relative;
+  border-radius: 8px;
+  padding: 16px 8px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--Bg);
+  display: grid;
+  gap: 4px;
+
+  &:first-child {
+    padding: 8px 8px 16px 8px;
+  }
+
+  &:hover {
+    background: var(--Dark);
+  }
+
+  &__text {
+    font-weight: 500;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 16px;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 100px;
+    border: 1px solid var(--Primary);
+    background: var(--AccentLight);
+  }
+}

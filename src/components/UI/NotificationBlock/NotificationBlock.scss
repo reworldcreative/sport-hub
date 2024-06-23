@@ -1,0 +1,58 @@
+.notification {
+  position: relative;
+
+  &__container {
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__block {
+    position: absolute;
+    border-radius: 100px;
+    background: var(--AccentLight);
+    text-align: center;
+    width: fit-content;
+    padding: 2px 5px 1px;
+    top: 10px;
+    left: 12px;
+  }
+
+  &__wrapper {
+    padding: 8px 8px 16px 8px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-top: 2px;
+    border-radius: 8px;
+    background: var(--BgSecond);
+    width: max-content;
+    max-width: 282px;
+    transform: translate(-50%, 0) scale(0);
+    box-sizing: border-box;
+    opacity: 0;
+    transition:
+      opacity 0.5s ease-in-out,
+      transform 0s ease-in-out;
+    transition-delay: 0s, 0.5s;
+
+    &.active {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    &.left {
+      right: 0;
+      left: auto;
+      transform: translate(0, 0);
+    }
+  }
+
+  &__list {
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-height: 330px;
+    max-width: 298px;
+    padding: 0px 8px 0px 0px;
+  }
+}

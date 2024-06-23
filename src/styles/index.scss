@@ -1,0 +1,130 @@
+@import "normalize.css";
+@import "variables.scss";
+
+/* Uto Regular */
+@font-face {
+  font-family: "Uto";
+  src:
+    url("@/assets/fonts/Uto-Regular.ttf") format("truetype"),
+    url("@/assets/fonts/Uto-Regular.woff") format("woff"),
+    url("@/assets/fonts/Uto-Regular.woff2") format("woff2"),
+    url("@/assets/fonts/Uto-Regular.eot") format("embedded-opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Uto Medium */
+@font-face {
+  font-family: "Uto";
+  src:
+    url("@/assets/fonts/Uto-Medium.ttf") format("truetype"),
+    url("@/assets/fonts/Uto-Medium.woff") format("woff"),
+    url("@/assets/fonts/Uto-Medium.woff2") format("woff2"),
+    url("@/assets/fonts/Uto-Medium.eot") format("embedded-opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Uto Semi Bold */
+@font-face {
+  font-family: "Uto";
+  src:
+    url("@/assets/fonts/Uto-SemiBold.ttf") format("truetype"),
+    url("@/assets/fonts/Uto-SemiBold.woff") format("woff"),
+    url("@/assets/fonts/Uto-SemiBold.woff2") format("woff2"),
+    url("@/assets/fonts/Uto-SemiBold.eot") format("embedded-opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Uto Bold */
+@font-face {
+  font-family: "Uto";
+  src:
+    url("@/assets/fonts/Uto-Bold.ttf") format("truetype"),
+    url("@/assets/fonts/Uto-Bold.woff") format("woff"),
+    url("@/assets/fonts/Uto-Bold.woff2") format("woff2"),
+    url("@/assets/fonts/Uto-Bold.eot") format("embedded-opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Uto Light */
+@font-face {
+  font-family: "Uto";
+  src:
+    url("@/assets/fonts/Uto-Light.ttf") format("truetype"),
+    url("@/assets/fonts/Uto-Light.woff") format("woff"),
+    url("@/assets/fonts/Uto-Light.woff2") format("woff2"),
+    url("@/assets/fonts/Uto-Light.eot") format("embedded-opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+.visibility-hidden {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  outline: 0;
+  outline-offset: 0;
+  pointer-events: none;
+  /* visibility: hidden; */
+}
+
+a,
+.link {
+  text-decoration: none;
+}
+
+*.horizontal-container {
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Uto", sans-serif;
+  background: var(--Bg);
+  color: var(--Primary);
+}
+
+.sub-title {
+  @include Font(20px, 600);
+}
+
+.title {
+  @include Font(20px, 400);
+}
+
+.text {
+  @include Font(16px, 400);
+}
+
+.small-text {
+  @include Font(10px, 500);
+}
+
+.text-label {
+  @include Font(10px, 300);
+}
+
+.button {
+  @include Font(14px, 600, normal, var(--Primary), 0px, var(--font));
+}

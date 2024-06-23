@@ -1,0 +1,81 @@
+.search-block {
+  position: relative;
+  background-color: transparent;
+  transition:
+    background-color 0.5s ease-in-out,
+    padding 0.5s ease-in-out;
+  border-radius: 8px;
+
+  &:has(> .search-block__input:focus) {
+    outline: solid 1px var(--Primary);
+  }
+
+  &.active {
+    background-color: var(--BgSecond);
+    padding: 8px;
+    transition:
+      background-color 0.5s ease-in-out,
+      padding 0.5s ease-in-out;
+
+    .search-block {
+      &__icon {
+        fill: var(--SecondLight);
+      }
+
+      &__input {
+        visibility: visible;
+        width: 180px;
+        position: relative;
+        pointer-events: all;
+        margin: 0px 8px 0px 0px;
+      }
+    }
+  }
+
+  &__icon {
+    fill: var(--Primary);
+    cursor: pointer;
+  }
+
+  &__input {
+    pointer-events: none;
+    width: 0px;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    caret-color: var(--AccentLight);
+    visibility: hidden;
+    transition: width 0.5s ease-in-out;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &__list {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    margin-top: 2px;
+    border-radius: 8px;
+    background: var(--BgSecond);
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  &__item {
+    border-radius: 8px;
+    padding: 8.5px 10px;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--Dark);
+    }
+  }
+}

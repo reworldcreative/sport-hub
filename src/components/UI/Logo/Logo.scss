@@ -1,0 +1,15 @@
+.logo {
+  &__icon {
+    margin-right: 4px;
+  }
+
+  &:hover {
+    .logo__text {
+      color: var(--AccentMiddle);
+    }
+
+    .logo__icon {
+      stroke: var(--AccentMiddle);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.header {
+  padding: 11px 24px;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--BgSecond);
+  height: 40px;
+
+  &__menu {
+    display: flex;
+    gap: 24px;
+  }
+
+  .logIn__button {
+    width: 120px;
+  }
+}

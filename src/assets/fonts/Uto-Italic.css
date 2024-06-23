@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Uto-Italic";
+    src: url("Uto-Italic.eot"); /* IE9 */
+    src: url("Uto-Italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("Uto-Italic.woff2") format("woff2"), /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
+    url("Uto-Italic.woff") format("woff"), /* chrome, firefox */
+    url("Uto-Italic.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("Uto-Italic.svg#Uto-Italic") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
+
+
