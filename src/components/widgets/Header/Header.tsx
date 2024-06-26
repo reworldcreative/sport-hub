@@ -1,34 +1,29 @@
 import { FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import "./Header.scss";
-import { RootState } from "@/store/store";
-import { logIn } from "@/store/authorizationSlice";
 import Logo from "@/components/UI/Logo/Logo";
 import SearchBlock from "@/components/UI/SearchBlock/SearchBlock";
-import NotificationBlock from "@/components/UI/NotificationBlock/NotificationBlock";
-import Button from "@/components/UI/Button/Button";
+import Burger from "@/components/UI/Burger/Burger";
+import { useMediaQuery } from "react-responsive";
+import HeaderMenu from "./HeaderMenu";
 
 const Header: FC = () => {
-  const authorizedData = useSelector((state: RootState) => state.authorization);
-  const dispatch = useDispatch();
-
-  const logInHandle = () => {
-    dispatch(logIn("customer"));
-  };
+  const isSmallTablet = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
-    <header className="header horizontal-container">
-      <Logo />
+    <header className="horizontal-container header">
+      <div className="horizontal-container">
+        {isSmallTablet && <Burger />}
 
-      <div className="header__menu horizontal-container">
+        <Logo />
+      </div>
+
+      <div className="horizontal-container header__menu">
         <SearchBlock />
 
-        <NotificationBlock />
-
-        {!authorizedData.authorized && (
-          <Button link={"/login"} addClass="logIn__button" onClick={logInHandle}>
-            Sign in
-          </Button>
+        {!isSmallTablet && (
+          <div className="horizontal-container header__menu-block">
+            <HeaderMenu />
+          </div>
         )}
       </div>
     </header>

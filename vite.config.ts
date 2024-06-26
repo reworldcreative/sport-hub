@@ -185,6 +185,14 @@ export default defineConfig(({ command, mode }) => {
           }),
         ],
       },
+      // preprocessorOptions: { // додавати потрібні файли автоматично до кожного SCSS файлу
+      //   scss: {
+      //     additionalData: `
+      //     @import "@/styles/variables";
+      //     @import "@/styles/";
+      //   `
+      //   }
+      // }
     },
     build: {
       outDir: "docs",
@@ -251,6 +259,8 @@ export default defineConfig(({ command, mode }) => {
         "@img": path.resolve(__dirname, "./src/assets/img"),
         "@icons": path.resolve(__dirname, "./src/assets/img/icons"),
         "@plugins": path.resolve(__dirname, "./plugins"),
+        "@layouts": path.resolve(__dirname, "./src/components/layouts"),
+        "@hooks": path.resolve(__dirname, "./src/hooks"),
       },
     },
 

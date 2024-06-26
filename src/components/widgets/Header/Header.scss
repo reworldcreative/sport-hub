@@ -4,9 +4,16 @@
   border-bottom: 1px solid var(--BgSecond);
   height: 40px;
 
-  &__menu {
-    display: flex;
+  &__menu,
+  &__menu-block {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24px, auto));
     gap: 24px;
+    max-width: 100%;
+  }
+
+  &__menu-block {
+    max-width: 310px;
   }
 
   .logIn__button {

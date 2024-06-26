@@ -24,7 +24,9 @@
       "@/*": ["./src/*"],
       "@img/*": ["./src/assets/img/*"],
       "@icons/*": ["./src/assets/img/icons/*"],
-      "@plugins/*": ["./plugins/*"]
+      "@plugins/*": ["./plugins/*"],
+      "@layouts/*": ["./src/components/layouts/*"],
+      "@hooks/*": ["./src/hooks/*"]
     },
     "types": ["vite/client"]
   },

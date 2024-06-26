@@ -3,9 +3,9 @@ import "./Button.scss";
 import { Link } from "@tanstack/react-router";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  color?: "primary" | "secondary";
+  color?: "primary" | "secondary" | "bordered";
   iconType?: "left" | "right" | "only" | "none";
-  addClass: string;
+  addClass?: string;
   icon?: ElementType;
   link?: string;
 }
@@ -27,7 +27,7 @@ const Button: FC<ButtonProps> = ({
     </Link>
   ) : (
     <button {...props} className={`button ${color} ${iconType} ${addClass ?? ""}`}>
-      {Icon && iconType != "none" && <Icon className={`button__icon ${iconType}`} />}
+      {Icon && iconType != "none" && <Icon className={`button__icon ${iconType}`} width="24" height="24" />}
 
       {iconType != "only" && children}
     </button>

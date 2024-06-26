@@ -3,12 +3,12 @@
   border: none;
   cursor: pointer;
   display: flex;
-  padding: 2px 4px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   padding: 11px;
   text-decoration: none;
+  box-sizing: border-box;
 
   &__icon {
     fill: var(--Primary);
@@ -46,7 +46,7 @@
     }
   }
 
-  &.secondary {
+  &.bordered {
     background: none;
     color: var(--AccentLight);
     outline: 1px solid var(--AccentLight);
@@ -68,6 +68,26 @@
 
     &:disabled {
       outline: 1px solid var(--Second);
+    }
+  }
+
+  &.secondary {
+    background: none;
+    color: var(--Second);
+
+    .button__icon {
+      fill: var(--Second);
+      stroke: var(--Second);
+    }
+
+    &:hover {
+      color: var(--Primary);
+      background: var(--BgSecond);
+
+      .button__icon {
+        fill: var(--Primary);
+        stroke: var(--Primary);
+      }
     }
   }
 }

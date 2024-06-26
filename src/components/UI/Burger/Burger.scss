@@ -1,0 +1,46 @@
+.burger {
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  padding: 5px 3px;
+  margin: 0px 20px 0px 0px;
+
+  &:hover {
+    .burger__line {
+      background-color: var(--AccentLight);
+    }
+  }
+
+  &__line {
+    display: block;
+    width: 18px;
+    height: 3px;
+    background-color: var(--Primary);
+    border-radius: 30px;
+    position: relative;
+
+    &::before {
+      content: "";
+      display: inherit;
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      background-color: inherit;
+      border-radius: inherit;
+      top: -6px;
+    }
+
+    &::after {
+      content: "";
+      display: inherit;
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      background-color: inherit;
+      border-radius: inherit;
+      top: 6px;
+    }
+  }
+}

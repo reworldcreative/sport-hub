@@ -1,0 +1,84 @@
+.header-profile {
+  position: relative;
+
+  &__avatar {
+    border-radius: 100%;
+    margin-right: 10px;
+  }
+
+  &__button {
+    padding: 8px 10px;
+    color: var(--Second);
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__list {
+    display: block;
+    gap: 16px;
+    position: absolute;
+    top: 100%;
+    right: 0px;
+    left: auto;
+    border-radius: 8px;
+    background: var(--BgSecond);
+    width: 100%;
+    padding: 16px;
+    max-width: 200px;
+    width: max-content;
+    box-sizing: border-box;
+    margin-top: 12px;
+    opacity: 0;
+    transition:
+      opacity 0.5s ease-in-out,
+      transform 0.5s ease-in-out;
+    transition-delay: 0s, 0.5s;
+    pointer-events: none;
+    transform: scale(0);
+
+    &.visible {
+      transition: opacity 0.5s ease-in-out;
+      transition-delay: 0s, 0.5s;
+      opacity: 1;
+      pointer-events: all;
+      transform: scale(1);
+    }
+  }
+
+  &__item {
+    padding: 0px 0px 16px 0px;
+
+    &:last-child {
+      border-top: 1px solid var(--Bg);
+      padding: 16px 0px 0px 0px;
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+
+    .text {
+      color: var(--Second);
+    }
+
+    &:hover {
+      .text {
+        color: var(--Primary);
+      }
+
+      .header-profile__item-icon {
+        fill: var(--Primary);
+      }
+    }
+  }
+
+  &__item-icon {
+    fill: var(--Second);
+    min-width: fit-content;
+    margin-right: 8px;
+  }
+}

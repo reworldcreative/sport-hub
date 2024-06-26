@@ -7,3 +7,41 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
+
+declare module "react-audio-visualize" {
+  import { FC } from "react";
+
+  interface AudioVisualizerProps {
+    blob?: Blob;
+    ref?: React.RefObject<HTMLCanvasElement>;
+    height?: number | null; 
+    width?: number | null;
+    barWidth?: number | null;
+    gap?: number | null;
+    backgroundColor?: string| null,
+    barColor?: string| null,
+    barPlayedColor?: string| null, 
+    currentTime?: number = 0,
+    duration?: number = 1,
+    style?:React.CSSProperties| null;
+  }
+
+  interface LiveAudioVisualizerProps {
+    mediaRecorder?;
+    height?: number | null; 
+    width?: number | null;
+    barWidth?: number | null;
+    gap?: number | null;
+    backgroundColor?: string| null,
+    barColor?: string| null,
+    barPlayedColor?: string| null, 
+    fftSize?: number| null,
+    maxDecibels?: number| null,
+    minDecibels?: number| null,
+    smoothingTimeConstant?: number| null,
+  }
+
+  export const AudioVisualizer: FC<AudioVisualizerProps>;
+  export const LiveAudioVisualizer: FC<LiveAudioVisualizerProps>;
+  
+}
