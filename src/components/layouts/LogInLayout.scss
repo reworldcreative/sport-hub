@@ -1,0 +1,41 @@
+.log-in-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 46.5% auto;
+  gap: 30px;
+  overflow: clip;
+  height: 100vh;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -4.6vh;
+    right: -5.25vw;
+    width: 291px;
+    height: 291px;
+    border-radius: 291px;
+    background: var(--AccentMiddle);
+    filter: blur(250px);
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 35vh;
+    left: 15vw;
+    width: 349px;
+    height: 349px;
+    border-radius: 349px;
+    opacity: 0.8;
+    background: var(AccentLight);
+    filter: blur(300px);
+    z-index: -1;
+  }
+
+  &__container {
+    align-items: center;
+    display: grid;
+    padding: 10px 80px;
+  }
+}

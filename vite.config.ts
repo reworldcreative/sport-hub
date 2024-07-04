@@ -13,6 +13,7 @@ import PurgeCSS from "@fullhuman/postcss-purgecss";
 import svgr from "vite-plugin-svgr";
 import imageminJpegRecompress from "imagemin-jpeg-recompress";
 import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
+// import changeImageExtension from "./vite-plugin-change-extension";
 // import Unfonts from "unplugin-fonts/vite";
 // import fontmin from "fontmin";
 
@@ -149,6 +150,11 @@ export default defineConfig(({ command, mode }) => {
             },
           },
         }),
+      // замін jpg на webp (не працює)
+      // mode === "production" &&
+      //   changeImageExtension({
+      //     include: ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
+      //   }),
     ],
     css: {
       postcss: {
@@ -261,6 +267,7 @@ export default defineConfig(({ command, mode }) => {
         "@plugins": path.resolve(__dirname, "./plugins"),
         "@layouts": path.resolve(__dirname, "./src/components/layouts"),
         "@hooks": path.resolve(__dirname, "./src/hooks"),
+        "@styles": path.resolve(__dirname, "./src/styles"),
       },
     },
 

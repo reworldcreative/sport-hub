@@ -1,0 +1,13 @@
+@import "@styles/variables.scss";
+
+.videos-log-in-block {
+  position: relative;
+  margin: 0px 0px 0px 33px;
+  box-sizing: border-box;
+}
+
+@include Tablet() {
+  .videos-log-in-block {
+    display: none;
+  }
+}

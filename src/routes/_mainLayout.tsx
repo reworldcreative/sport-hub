@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_mainLayout")({
 
 function MainLayout() {
   return (
-    <div className="mainLayout">
+    <div className="main-layout">
       <Header />
       <div>
         <Outlet />

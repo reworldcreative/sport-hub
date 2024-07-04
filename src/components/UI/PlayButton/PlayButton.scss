@@ -1,0 +1,22 @@
+.play-button {
+  padding: 4.5px 6px;
+  border-radius: 4.5px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(1px);
+  border: none;
+  height: fit-content;
+  width: fit-content;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--Bg);
+    .play-button__icon {
+      fill: var(--Primary);
+    }
+  }
+
+  &__icon {
+    fill: var(--PrimaryLight);
+    display: block;
+  }
+}

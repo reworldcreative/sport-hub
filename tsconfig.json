@@ -26,10 +26,11 @@
       "@icons/*": ["./src/assets/img/icons/*"],
       "@plugins/*": ["./plugins/*"],
       "@layouts/*": ["./src/components/layouts/*"],
-      "@hooks/*": ["./src/hooks/*"]
+      "@hooks/*": ["./src/hooks/*"],
+      "@styles/*": ["./src/styles/*"]
     },
     "types": ["vite/client"]
   },
-  "include": ["src", "vite-env.d.ts"],
+  "include": ["src", "vite-env.d.ts", "vite-plugin-change-extension.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

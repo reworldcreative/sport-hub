@@ -1,6 +1,10 @@
 .equalizer {
-  &__wrapper {
-    max-width: 150px;
+  &__block {
+    display: flex;
+
+    &-live {
+      max-width: 200px;
+    }
     overflow: hidden;
   }
 }

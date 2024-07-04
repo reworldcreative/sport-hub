@@ -1,94 +1,110 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { AudioVisualizer, LiveAudioVisualizer } from "react-audio-visualize";
 import "./Equalizer.scss";
-import poster from "@img/avatars/avatar1.jpg";
 
-const Equalizer: FC = () => {
-  // const audioRef = useRef<HTMLAudioElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+interface EqualizerProps {
+  sourceRef: React.RefObject<HTMLVideoElement> | React.RefObject<HTMLAudioElement>;
+  type: "static" | "dynamic";
+}
+
+const Equalizer: FC<EqualizerProps> = ({ sourceRef, type = "static" }) => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
-
-  const handlePlayPause = () => {
-    // if (isPlaying) {
-    //   if (audioRef.current) {
-    //     audioRef.current.pause();
-    //   }
-    // } else {
-    //   if (audioRef.current) {
-    //     audioRef.current.play();
-    //   }
-    // }
-
-    if (isPlaying) {
-      if (videoRef.current) {
-        videoRef.current.pause();
-      }
-    } else {
-      if (videoRef.current) {
-        videoRef.current.play();
-      }
-    }
-    setIsPlaying(!isPlaying);
-  };
-
   const [blob, setBlob] = useState<Blob>();
   const visualizerRef = useRef<HTMLCanvasElement>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const mediaElementSourceRef = useRef<MediaElementAudioSourceNode | null>(null);
+  const destinationRef = useRef<MediaStreamAudioDestinationNode | null>(null);
+  const [currentTime, setCurrentTime] = useState(0);
 
-  // Функція для завантаження аудіо та встановлення blob
+  // Функція для завантаження аудіо з відео та встановлення blob
   const loadAudio = async () => {
-    try {
-      const response = await fetch("/video.mp4");
-      const audioBlob = await response.blob();
-      setBlob(audioBlob);
-    } catch (error) {
-      console.error("Помилка завантаження аудіо:", error);
+    if (sourceRef.current) {
+      let src = sourceRef.current.currentSrc || sourceRef.current.src;
+
+      // Періодична перевірка наявності src
+      const checkSrc = new Promise<string>((resolve) => {
+        const interval = setInterval(() => {
+          src = sourceRef.current?.currentSrc! || sourceRef.current?.src!;
+          if (src) {
+            clearInterval(interval);
+            resolve(src);
+          }
+        }, 100);
+      });
+
+      try {
+        const resolvedSrc = await checkSrc;
+        const response = await fetch(resolvedSrc);
+        const audioBlob = await response.blob();
+        setBlob(audioBlob);
+      } catch (error) {
+        console.error("Помилка завантаження аудіо:", error);
+      }
+    } else {
+      console.error("Помилка - Video is null");
     }
   };
 
-  useEffect(() => {
-    loadAudio();
-
-    return () => {
-      loadAudio();
-    };
-  }, []);
-
-  const setupMediaRecorder = async () => {
+  const setupAudioContext = async () => {
     try {
-      const videoElement = videoRef.current;
+      if (!audioContextRef.current) {
+        // Створити новий контекст аудіо
+        audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+      }
 
-      if (!videoElement) return;
+      const audioContext = audioContextRef.current;
 
-      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-      const source = audioContext.createMediaElementSource(videoElement);
-      const destination = audioContext.createMediaStreamDestination();
+      if (!mediaElementSourceRef.current) {
+        const videoElement = sourceRef.current;
+        if (!videoElement) return;
+
+        // Створити новий MediaElementAudioSourceNode
+        mediaElementSourceRef.current = audioContext.createMediaElementSource(videoElement);
+      }
+
+      if (!destinationRef.current) {
+        // Створити новий MediaStreamDestinationNode
+        destinationRef.current = audioContext.createMediaStreamDestination();
+      }
+
+      const source = mediaElementSourceRef.current;
+      const destination = destinationRef.current;
+
       source.connect(destination);
-      source.connect(audioContext.destination); // Connect to the audio context's destination to actually play sound
+      source.connect(audioContext.destination); // Підключіть до призначення аудіоконтексту, щоб фактично відтворювати звук
 
       const newMediaRecorder = new MediaRecorder(destination.stream);
       setMediaRecorder(newMediaRecorder);
 
-      // Start recording immediately
+      // Розпочати запис відразу
       newMediaRecorder.start();
     } catch (error) {
-      console.error("Помилка налаштування MediaRecorder:", error);
+      console.error("Помилка налаштування AudioContext:", error);
     }
   };
 
   const handleStart = async () => {
-    await setupMediaRecorder();
-    handlePlayPause();
+    await setupAudioContext();
   };
 
-  const [currentTime, setCurrentTime] = useState(0);
+  useEffect(() => {
+    const videoElement = sourceRef.current;
+    if (videoElement && type === "dynamic") {
+      const handlePlay = () => handleStart();
+      videoElement.addEventListener("play", handlePlay);
+      return () => {
+        videoElement.removeEventListener("play", handlePlay);
+      };
+    }
+  }, [sourceRef]);
 
   useEffect(() => {
+    type === "static" && loadAudio();
     let animationFrameId: number;
 
     const updateCurrentTime = () => {
-      if (videoRef.current) {
-        setCurrentTime(videoRef.current.currentTime);
+      if (sourceRef.current) {
+        setCurrentTime(sourceRef.current.currentTime);
       }
       animationFrameId = requestAnimationFrame(updateCurrentTime);
     };
@@ -99,41 +115,35 @@ const Equalizer: FC = () => {
   }, []);
 
   return (
-    <div>
-      {/* <audio ref={audioRef} src="/relax.mp3" crossOrigin="anonymous"></audio> */}
-      <video ref={videoRef} width="320" height="240" poster={poster}>
-        <source src="/video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      {/* <button onClick={handlePlayPause}>{isPlaying ? "Pause" : "Play"}</button> */}
-      {blob && (
-        <AudioVisualizer
-          ref={visualizerRef}
-          blob={blob}
-          width={300}
-          height={70}
-          barWidth={5}
-          gap={5}
-          barColor={"#ffffff"}
-          barPlayedColor={"#ad7955"}
-          currentTime={currentTime}
-        />
+    <div className="equalizer__wrapper">
+      {type === "static" && blob && (
+        <div className="equalizer__block">
+          <AudioVisualizer
+            ref={visualizerRef}
+            blob={blob}
+            width={300}
+            height={20}
+            barWidth={2}
+            gap={2}
+            barColor={"#ffffff"}
+            barPlayedColor={"#ad7955"}
+            currentTime={currentTime}
+            style={{ maxWidth: "100%" }}
+          />
+        </div>
       )}
 
-      <button onClick={handleStart}>{isPlaying ? "Pause" : "Play"}</button>
-
-      {mediaRecorder && (
-        <div className="equalizer__wrapper">
+      {type === "dynamic" && mediaRecorder && (
+        <div className="equalizer__block equalizer__block-live">
           <LiveAudioVisualizer
             mediaRecorder={mediaRecorder}
             width={300}
-            height={70}
-            barWidth={5}
+            height={20}
+            barWidth={2}
             gap={8}
             barColor={"#ffffff"}
-            // maxDecibels={0}
-            // minDecibels={-70}
+            maxDecibels={0}
+            minDecibels={-80}
           />
         </div>
       )}

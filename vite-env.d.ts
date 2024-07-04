@@ -45,3 +45,15 @@ declare module "react-audio-visualize" {
   export const LiveAudioVisualizer: FC<LiveAudioVisualizerProps>;
   
 }
+
+declare module "vite-plugin-change-extension" { 
+  import { Plugin } from 'vite';
+  import { FilterPattern } from '@rollup/pluginutils';
+  
+  interface ChangeImageExtensionOptions {
+    include?: FilterPattern;
+    exclude?: FilterPattern;
+  }
+  
+  export default function changeImageExtension(options?: ChangeImageExtensionOptions): Plugin;
+}
