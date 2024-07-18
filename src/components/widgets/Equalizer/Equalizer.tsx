@@ -30,6 +30,10 @@ const Equalizer: FC<EqualizerProps> = ({ sourceRef, type = "static" }) => {
             resolve(src);
           }
         }, 100);
+
+        setTimeout(() => {
+          clearInterval(interval);
+        }, 2000);
       });
 
       try {

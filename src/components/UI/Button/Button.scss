@@ -27,6 +27,7 @@
 
   &:disabled {
     color: var(--Second);
+    cursor: auto;
 
     .button__icon {
       fill: var(--Second);

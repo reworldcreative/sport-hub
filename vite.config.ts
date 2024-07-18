@@ -186,6 +186,7 @@ export default defineConfig(({ command, mode }) => {
                 "--SecondLight",
                 "--SecondDark",
                 "--Dark",
+                "--error",
               ],
             },
           }),

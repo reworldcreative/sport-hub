@@ -121,7 +121,7 @@ body {
   @include Font(14px, 400, 15px);
 }
 
-.input-label {
+.input__label {
   @include Font(14px, 400);
 }
 
@@ -131,6 +131,10 @@ body {
 
 .small-text {
   @include Font(10px, 500);
+}
+
+.log-in__small-text {
+  @include Font(12px, 400);
 }
 
 .text-label {

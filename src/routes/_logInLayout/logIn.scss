@@ -24,6 +24,49 @@
 }
 
 .form-fieldset {
+  display: grid;
+  gap: 24px;
   border: none;
   padding: 0px;
+}
+
+.log-in-button {
+  justify-self: center;
+}
+
+.log-in {
+  &__redirect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .text {
+      line-height: 22px;
+      color: var(--SecondLight);
+    }
+
+    .link {
+      margin-left: 8px;
+      font-weight: 600;
+      line-height: 22px;
+      color: var(--AccentLight);
+      text-decoration-line: underline;
+    }
+  }
+
+  &__terms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .log-in__small-text {
+      line-height: 22px;
+      color: var(--SecondLight);
+    }
+
+    .link {
+      line-height: 22px;
+      color: var(--SecondLight);
+      text-decoration-line: underline;
+    }
+  }
 }
